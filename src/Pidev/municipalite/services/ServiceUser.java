@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Pidev.municipalite.services;
 
 import Pidev.municipalite.entites.User;
@@ -10,24 +7,59 @@ import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.List;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-
-
-
-/**
- *
- * @author raedm
- */
 public class ServiceUser implements IService<User>{
     
 Connection cnx = MyConnection.getInstance().getCnx();
+
     @Override
     public void ajouter(User u) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        User p =u;
+        
+                try {
+                    String req ="SELECT * FROM user  where email = ?";
+                    PreparedStatement pr = cnx.prepareStatement(req);
+                    pr.setString(1, p.getEmail());
+                    ResultSet rs = pr.executeQuery();
+                    if(rs.next()){
+                        System.out.println("utilisateur existe déja ! "); 
+                   }}catch (SQLException ex ){
+                    System.out.println(ex.getMessage());
+                }
+                    
+                    
+                    String email = p.getEmail();
+                    String password = p.getPassword();
+                    String role = p.getRoles();
+                    String nom = p.getNomUtil();
+                    String prenom = p.getPrenomUtil();
+                    int tel = p.getTel();
+                    String adresse = p.getAdresse();
+                    
+                    try{
+                       String req1 ="INSERT INTO user( email, roles, password, is_verified, nom_util, prenom_util, tel, adresse) values(?,?,?,?,?,?,?,?) ";
+                       PreparedStatement pr1 = cnx.prepareStatement(req1);
+                       pr1.setString(1, email);
+                       pr1.setString(2, role);
+                       pr1.setString(3, password);
+                       pr1.setBoolean(4, true);
+                       pr1.setString(5, nom);
+                       pr1.setString(6, prenom);
+                       pr1.setInt(7, tel);
+                       pr1.setString(8, adresse);
+                       pr1.executeUpdate();
+                        System.out.println("Utilisateur ajouté avec succé");
+                    }catch(SQLException ex){
+                        System.out.println(ex.getMessage());
+                    }
+                    
+                }
+    
 
+    
     @Override
     public void supprimer(int id) {
         try {

@@ -1,27 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Pidev.municipalite.entites;
 
-import java.util.Set;
 
 
-/**
- *
- * @author raedm
- */
+
 public class User {
      private int id;
     private String email;
     private  String password;
-    Set<String> roles ;;
+    private String roles ;
     private  String nomUtil;
     private  String prenomUtil;
     private  int tel;
     private  String adresse;
 
-    public User(int id, String email, String password, Set<String> roles, String nomUtil, String prenomUtil, int tel, String adresse) {
+    public User(int id, String email, String password, String roles, String nomUtil, String prenomUtil){
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.nomUtil = nomUtil;
+        this.prenomUtil = prenomUtil;
+    }
+    
+    public User(int id, String email, String password, String roles, String nomUtil, String prenomUtil, int tel, String adresse) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -32,7 +34,7 @@ public class User {
         this.adresse = adresse;
     }
 
-    public User(String email, String password, Set<String> roles, String nomUtil, String prenomUtil, int tel, String adresse) {
+    public User(String email, String password, String roles, String nomUtil, String prenomUtil, int tel, String adresse) {
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -69,11 +71,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<String> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 

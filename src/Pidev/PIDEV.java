@@ -1,20 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package pidev;
 
-/**
- *
- * @author raedm
- */
+import Pidev.municipalite.entites.User;
+import Pidev.municipalite.services.ServiceUser;
+import Pidev.municipalite.utils.MyConnection;
+
+
 public class PIDEV {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+ //MyConnection cnx = MyConnection.getInstance();
+ServiceUser us = new ServiceUser();
+//User u = new User("saif@gmail.com", "ki zebii", "ROLE_CITOYEN", "saif", "messaoudi", 29603440, "Nabeul 8000");
+      
+//us.ajouter(u);
+us.supprimer(23);
+ 
     }
     
 }
