@@ -3,6 +3,8 @@ package Pidev.municipalite.services;
 
 import Pidev.municipalite.entites.User;
 import Pidev.municipalite.utils.MyConnection;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,6 +16,43 @@ import java.util.ArrayList;
 public class ServiceUser implements IService<User>{
     
 Connection cnx = MyConnection.getInstance().getCnx();
+
+    public User Signin (String email , String password){
+       try{
+           String req5 = "SELECT * FROM user WHERE email = ?";
+          PreparedStatement pr5 = cnx.prepareStatement(req5);
+          pr5.setString(1, email);
+          ResultSet rs = pr5.executeQuery();
+          if (rs.next()){
+              String storedPassword = rs.getString("password");
+              if (storedPassword.equals(password)){
+                  User u = new User();
+                  u.setId(rs.getInt("id"));
+                  
+                  u.setEmail(rs.getString("email"));
+                  System.out.println(u);
+                  try{
+                      FileWriter writer = new FileWriter("session.txt",false);
+                      
+                      writer.write(String.valueOf(u.getId()));
+                      writer.flush();
+                      writer.close();
+                      return u;
+                  }catch(IOException ex ){
+                      System.out.println(ex.getMessage());
+                  }
+              }else{
+                  System.out.println("Mot de passe incorrecte");
+              }
+          }else{
+              System.out.println("Utilisateur pas existant");
+          }
+       }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+       }
+        
+        return null;
+    }
 
     @Override
     public void ajouter(User u) {
