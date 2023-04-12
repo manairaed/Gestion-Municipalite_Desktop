@@ -28,7 +28,7 @@ public class main extends Application {
         }
         }else{
             try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("municipalite/GUI/Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("municipalite/GUI/InterfaceInscription.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root );
             primaryStage.setScene(scene);
