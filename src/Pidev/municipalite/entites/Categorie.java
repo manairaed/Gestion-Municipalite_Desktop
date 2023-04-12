@@ -10,5 +10,44 @@ package Pidev.municipalite.entites;
  * @author Ala
  */
 public class Categorie {
+    private int id;
+    private String labelcat;
+
+    public Categorie() {
+    }
+
+    public Categorie(int id, String labelcat) {
+        this.id = id;
+        this.labelcat = labelcat;
+    }
+
+    public Categorie(String labelcat) {
+        this.labelcat = labelcat;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLabelcat() {
+        return labelcat;
+    }
+
+    public void setLabelcat(String labelcat) {
+        this.labelcat = labelcat;
+    }
+
+    @Override
+    public String toString() {
+        return "Categorie{" + "id=" + id + ", labelcat=" + labelcat + '}';
+    }
+    
+    
+    
     
 }
+
