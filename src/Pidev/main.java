@@ -1,6 +1,7 @@
 
 package Pidev;
 
+import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,20 @@ public class main extends Application {
     
     @Override
     public void start (Stage primaryStage){
-        try{
+        File sessionFile = new File("session.txt");
+        if(sessionFile.exists()){
+              try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("municipalite/GUI/InterfaceAdmin.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root );
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+                    primaryStage.show();
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        }else{
+            try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("municipalite/GUI/Login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root );
@@ -22,6 +36,7 @@ public class main extends Application {
                     primaryStage.show();
         }catch(IOException ex){
             System.out.println(ex.getMessage());
+        }
         }
     }
     

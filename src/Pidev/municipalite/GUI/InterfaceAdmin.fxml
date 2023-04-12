@@ -9,8 +9,8 @@
 <AnchorPane prefHeight="452.0" prefWidth="800" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pidev.municipalite.GUI.InterfaceAdminController">
    <children>
       <fx:include source="Navbar.fxml" />
-      <Button layoutX="544.0" layoutY="31.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Ajouter Utilisateur" />
-      <Button layoutX="669.0" layoutY="31.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Ajouter Admin" />
+      <Button layoutX="431.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Ajouter Utilisateur" />
+      <Button layoutX="556.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Ajouter Admin" />
       <AnchorPane layoutX="171.0" layoutY="78.0" prefHeight="362.0" prefWidth="616.0">
          <children>
             <ScrollPane prefHeight="362.0" prefWidth="616.0">
@@ -29,5 +29,6 @@
             </ScrollPane>
          </children>
       </AnchorPane>
+      <Button fx:id="btn_logout" layoutX="681.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="105.0" text="Se déconnecter" />
    </children>
 </AnchorPane>

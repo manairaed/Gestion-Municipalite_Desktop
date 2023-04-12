@@ -5,6 +5,9 @@ import Pidev.municipalite.entites.User;
 import Pidev.municipalite.utils.MyConnection;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,6 +15,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 public class ServiceUser implements IService<User>{
     
@@ -25,7 +31,9 @@ Connection cnx = MyConnection.getInstance().getCnx();
           ResultSet rs = pr5.executeQuery();
           if (rs.next()){
               String storedPassword = rs.getString("password");
-              if (storedPassword.equals(password)){
+              String mot = storedPassword.replaceFirst("^\\$2y\\$", "\\$2a\\$");
+              
+              if (BCrypt.checkpw(password, mot)){
                   User u = new User();
                   u.setId(rs.getInt("id"));
                   
@@ -39,16 +47,25 @@ Connection cnx = MyConnection.getInstance().getCnx();
                       writer.close();
                       return u;
                   }catch(IOException ex ){
-                      System.out.println(ex.getMessage());
+                     
                   }
               }else{
-                  System.out.println("Mot de passe incorrecte");
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur login");
+            alert.setHeaderText("Mot de passe incorrecte");
+            alert.showAndWait();
               }
           }else{
-              System.out.println("Utilisateur pas existant");
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur login");
+            alert.setHeaderText("Utilisateur existe pas !");
+            alert.showAndWait();
           }
        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur login");
+            alert.setHeaderText(ex.getMessage());
+            alert.showAndWait();
        }
         
         return null;
@@ -72,6 +89,7 @@ Connection cnx = MyConnection.getInstance().getCnx();
                     
                     String email = p.getEmail();
                     String password = p.getPassword();
+                    String hashedPassword =BCrypt.hashpw(password, BCrypt.gensalt(12));
                     String role = p.getRoles();
                     String nom = p.getNomUtil();
                     String prenom = p.getPrenomUtil();
@@ -83,7 +101,7 @@ Connection cnx = MyConnection.getInstance().getCnx();
                        PreparedStatement pr1 = cnx.prepareStatement(req1);
                        pr1.setString(1, email);
                        pr1.setString(2, role);
-                       pr1.setString(3, password);
+                       pr1.setString(3, hashedPassword);
                        pr1.setBoolean(4, true);
                        pr1.setString(5, nom);
                        pr1.setString(6, prenom);
@@ -96,8 +114,6 @@ Connection cnx = MyConnection.getInstance().getCnx();
                     }
                     
                 }
-    
-
     
     @Override
     public void supprimer(int id) {

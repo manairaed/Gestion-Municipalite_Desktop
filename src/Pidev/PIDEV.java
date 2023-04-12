@@ -17,13 +17,13 @@ public class PIDEV {
         
  //MyConnection cnx = MyConnection.getInstance();
 ServiceUser us = new ServiceUser();
-//User u = new User("saif@gmail.com", "ki zebii", "ROLE_CITOYEN", "saif", "messaoudi", 29603440, "Nabeul 8000");
+User u = new User("saif12345@gmail.com", "saifsaif002", "ROLE_CITOYEN", "saif", "messaoudi", 29603440, "Nabeul 8000");
      // User u = new User(25,"saifmessaoudi@gmail.com","saif", "messaoudi", 29886500, "Nabeul 8000");
  //l=us.getAll();
      //   System.out.println(l);
-//us.modifier(u);
+us.ajouter(u);
 //us.supprimer(23);
-System.out.println(us.getOneById(3));
+//System.out.println(us.getOneById(3));
  
     }
     
