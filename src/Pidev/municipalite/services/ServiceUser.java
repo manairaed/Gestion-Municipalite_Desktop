@@ -81,7 +81,10 @@ Connection cnx = MyConnection.getInstance().getCnx();
                     pr.setString(1, p.getEmail());
                     ResultSet rs = pr.executeQuery();
                     if(rs.next()){
-                        System.out.println("utilisateur existe déja ! "); 
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Utilisateur existe déja !");
+            alert.showAndWait();
                    }}catch (SQLException ex ){
                     System.out.println(ex.getMessage());
                 }
@@ -108,7 +111,10 @@ Connection cnx = MyConnection.getInstance().getCnx();
                        pr1.setInt(7, tel);
                        pr1.setString(8, adresse);
                        pr1.executeUpdate();
-                        System.out.println("Utilisateur ajouté avec succé");
+                      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Bienvenue");
+            alert.setHeaderText("Votre compte est créer");
+            alert.showAndWait();
                     }catch(SQLException ex){
                         System.out.println(ex.getMessage());
                     }

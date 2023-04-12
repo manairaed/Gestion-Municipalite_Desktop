@@ -3,15 +3,22 @@ package Pidev.municipalite.GUI;
 
 import Pidev.municipalite.entites.Citoyen;
 import Pidev.municipalite.entites.User;
+import Pidev.municipalite.services.ServiceUser;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 
 public class InterfaceInscriptionController implements Initializable {
@@ -31,6 +38,7 @@ public class InterfaceInscriptionController implements Initializable {
     @FXML
     private Button btn_signup;
 
+    ServiceUser us = new ServiceUser();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -82,9 +90,41 @@ public class InterfaceInscriptionController implements Initializable {
             alert.setTitle("Erreur");
             alert.setHeaderText("adresse invalide !");
             alert.showAndWait();
+    }else{
+              u.setEmail(email);
+         u.setPassword(password);
+         u.setNomUtil(nom);
+         u.setPrenomUtil(prenom);
+         u.setRoles("["+"ROLE_CITOYEN"+"]");
+         u.setTel(Integer.parseInt(tel));
+         u.setAdresse(adresse);
+         
+         us.ajouter(u);
+           try{
+                            Stage stage = (Stage) btn_signup.getScene().getWindow();
+                            Parent root =FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Scene scene = new Scene(root );
+            stage.setScene(scene);
+            stage.setResizable(false);
+                    stage.show();
+        }catch(IOException ex){
+                            System.out.println(ex.getMessage());
+        }
+         }
     }
-        
-                 
-          }
+
+    @FXML
+    private void goToLogin(MouseEvent event) {
+          try{
+                            Stage stage = (Stage) btn_signup.getScene().getWindow();
+                            Parent root =FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Scene scene = new Scene(root );
+            stage.setScene(scene);
+            stage.setResizable(false);
+                    stage.show();
+        }catch(IOException ex){
+                            System.out.println(ex.getMessage());
+        }
+    }
     
 }
