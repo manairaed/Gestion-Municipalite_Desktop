@@ -74,18 +74,38 @@ Connection cnx = MyConnection.getInstance().getCnx();
 
     @Override
     public void modifier(User u) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       try{
+        String updatereq="UPDATE user SET email=?,nom_util=?,prenom_util=?,tel=?,adresse=?  WHERE id=?";
+         PreparedStatement pr2 = cnx.prepareStatement(updatereq);
+         pr2.setString(1, u.getEmail());
+           pr2.setString(2, u.getNomUtil());
+            pr2.setString(3, u.getPrenomUtil());
+             pr2.setInt(4, u.getTel());
+              pr2.setString(5, u.getAdresse());
+              pr2.setInt(6, u.getId());
+             pr2.executeUpdate();
+             System.out.println("Utilisateur modifier avec succé");
+       }catch(SQLException ex){
+           System.out.println(ex.getMessage());
+       }
     }
 
     @Override
     public List<User> getAll() {
        List<User> list = new ArrayList<>();
         try {
-            String req = "Select * from utilisateur ";
+            String req = "Select * from user ";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while(rs.next()){
                User u = new User();
+               u.setEmail(rs.getString("email"));
+               u.setRoles(rs.getString("roles"));
+               u.setNomUtil(rs.getString("nom_util"));
+               u.setPrenomUtil(rs.getString("prenom_util"));
+               u.setTel(rs.getInt("tel"));
+                u.setAdresse(rs.getString("adresse"));
+               
                list.add(u);
             }
         } catch (SQLException ex) {
@@ -97,7 +117,25 @@ Connection cnx = MyConnection.getInstance().getCnx();
 
     @Override
     public User getOneById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        User u = new User();
+        
+        try{
+             String req4 = "Select * from user where id = ? ";
+             PreparedStatement pr4 = cnx.prepareStatement(req4);
+             pr4.setInt(1, id);
+             ResultSet rs = pr4.executeQuery();
+             if (rs.next()){
+                      u.setEmail(rs.getString("email"));
+               u.setRoles(rs.getString("roles"));
+               u.setNomUtil(rs.getString("nom_util"));
+               u.setPrenomUtil(rs.getString("prenom_util"));
+               u.setTel(rs.getInt("tel"));
+                u.setAdresse(rs.getString("adresse"));
+             }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+       return u;
     }
     
 }

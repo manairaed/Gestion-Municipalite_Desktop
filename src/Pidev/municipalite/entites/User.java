@@ -22,6 +22,17 @@ public class User {
         this.nomUtil = nomUtil;
         this.prenomUtil = prenomUtil;
     }
+
+    public User(int id, String email, String nomUtil, String prenomUtil, int tel, String adresse) {
+        this.id = id;
+        this.email = email;
+        this.nomUtil = nomUtil;
+        this.prenomUtil = prenomUtil;
+        this.tel = tel;
+        this.adresse = adresse;
+    }
+    
+    
     
     public User(int id, String email, String password, String roles, String nomUtil, String prenomUtil, int tel, String adresse) {
         this.id = id;
@@ -113,7 +124,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", roles=" + roles + ", nomUtil=" + nomUtil + ", prenomUtil=" + prenomUtil + ", tel=" + tel + ", adresse=" + adresse + '}';
+        return "User{" + "id=" + id + ", email=" + email + ", roles=" + roles + ", nomUtil=" + nomUtil + ", prenomUtil=" + prenomUtil + ", tel=" + tel + ", adresse=" + adresse + '}'+"\n";
     }
     
     
