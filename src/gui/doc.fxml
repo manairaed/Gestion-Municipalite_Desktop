@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="BTNAJOUTER" onDragDetected="#ajouter" prefHeight="542.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.DocController">
+   <children>
+      <Pane layoutX="28.0" layoutY="90.0" prefHeight="3.0" prefWidth="644.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Text fill="#170e61" layoutX="201.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Municipalite de Tunis" textAlignment="CENTER" wrappingWidth="377.13671875">
+         <font>
+            <Font name="MV Boli" size="33.0" />
+         </font>
+      </Text>
+      <VBox layoutY="-1.0" prefHeight="552.0" prefWidth="152.0" style="-fx-background-color: #0080FF;">
+         <children>
+            <Pane prefHeight="120.0" prefWidth="152.0" />
+            <Button fx:id="document" mnemonicParsing="false" onAction="#godocument" prefHeight="45.0" prefWidth="152.0" style="-fx-background-color: #170e61;" text="DOCUMENT" textFill="#f8f7f7" />
+            <Button fx:id="rendezvous" mnemonicParsing="false" onAction="#gorendez" prefHeight="45.0" prefWidth="152.0" style="-fx-background-color: #170e61;" text="RENDEZ-VOUS" textFill="#e4dddd" />
+         </children>
+      </VBox>
+      <Button layoutX="563.0" layoutY="340.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #0080FF;" text="AJOUTER" />
+      <TextField fx:id="textname" layoutX="335.0" layoutY="233.0" prefHeight="26.0" prefWidth="158.0" />
+   </children>
+</AnchorPane>
