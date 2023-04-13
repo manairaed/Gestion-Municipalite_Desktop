@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="pidevjava.DashbordController">
+    <stylesheets>
+        <URL value="@dashbord.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="-2.0" layoutY="-2.0" prefHeight="406.0" prefWidth="208.0" style="-fx-background-color: #1F23A6;">
+         <children>
+            <Button layoutX="14.0" layoutY="155.0" mnemonicParsing="false" onAction="#Gestionoutils" prefHeight="25.0" prefWidth="121.0" text="Gestion outils" />
+            <Button layoutX="14.0" layoutY="191.0" mnemonicParsing="false" onAction="#Gestionreservation" text="Gestion Reservation" />
+            <Text layoutX="53.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="207.0" prefHeight="404.0" prefWidth="392.0">
+         <children>
+            <Text layoutX="91.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MUNICIPALITE">
+               <font>
+                  <Font name="Consolas Bold" size="30.0" />
+               </font>
+            </Text>
+            <Text layoutX="128.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DE TUNIS">
+               <font>
+                  <Font name="Consolas Bold" size="28.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="256.0" fitWidth="338.0" layoutX="97.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/logo_Plan%20de%20travail%201.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
