@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -72,7 +73,7 @@ public class DocumentCRUD {
             String req = "DELETE FROM `document` WHERE id = " + id;
             Statement st = cnx2.createStatement();
             st.executeUpdate(req);
-            System.out.println("Personne deleted !");
+            System.out.println("document deleted !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -101,6 +102,26 @@ public class DocumentCRUD {
         
         
     }
+      public Document getOnedoc(int iddoc) throws SQLException {
+        String req = "SELECT * FROM `rendez_vous` where id = ?";
+        PreparedStatement ps = cnx2.prepareStatement(req);
+        ps.setInt(1, iddoc);
+
+        ResultSet rs = ps.executeQuery();
+        Document o =new Document();
+        
+        while (rs.next()) {
+        
+                    o.setId(rs.getInt(1));
+                    o.setName(rs.getString("name"));
+                   o.setImage(rs.getString("image"));
+           
+                   
+        }
+        ps.close();
+        return o;
+    }
+
      
    
     
