@@ -6,7 +6,7 @@ package INTERFACE;
 
 import entities.RendezVous;
 import java.awt.Desktop;
-import java.awt.Insets;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -38,6 +38,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import services.RendezVousCRUD;
+import javafx.geometry.Insets;
 
 
 /**
@@ -96,7 +97,7 @@ public class UsermeetingController implements Initializable {
                     }
                     cards.add(cardrendez, column++, row);
                     // GridPane.setMargin(oneProductCard, new Insets(10));
-                    GridPane.setMargin(cardrendez, new javafx.geometry.Insets(0, 10, 25, 10));
+                    GridPane.setMargin(cardrendez, new Insets(0, 10, 25, 10));
                     cardrendez.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.09), 25, 0.1, 0, 0);");
                     
                 }

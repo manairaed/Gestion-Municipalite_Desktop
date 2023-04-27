@@ -67,7 +67,7 @@ public class DocController implements Initializable {
                 }
                 cards.add(oneOffreCard, column++, row);
                 // GridPane.setMargin(oneProductCard, new Insets(10));
-                GridPane.setMargin(oneOffreCard, new Insets(0, 10, 25, 10));
+                GridPane.setMargin(oneOffreCard, new Insets(10, 10, 25, 10));
                 oneOffreCard.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.09), 25, 0.1, 0, 0);");
 
             }
