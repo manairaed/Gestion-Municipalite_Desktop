@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="566.0" styleClass="product-card" stylesheets="@dashoard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="INTERFACE.RendezcardController">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="91.0" prefWidth="511.0" translateY="2.0">
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin>
+         <children>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="462.0">
+               <children>
+                  <Text fx:id="stockProduit1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="product__card-stock" text="Description  :" wrappingWidth="109.57421875">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="OffreName" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" translateX="229.0" translateY="5.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="457.0" stylesheets="@../assets/style/offreStyle.css">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="6.0">
+                     <children>
+                        <Text fx:id="stockProduit" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="product__card-stock" text="Date      :" wrappingWidth="87.57421875">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="validiteOffre" strokeType="OUTSIDE" strokeWidth="0.0" text="125" translateX="164.0" translateY="-4.0">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="0.0" translateY="-5.0">
+                     <children>
+                        <Text fx:id="stockProduit11" fill="#43882b" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="product__card-stock" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="priceHbox" prefHeight="39.0" prefWidth="72.0" stylesheets="@../assets/style/offreStyle.css" translateX="244.0">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <Text fx:id="stockProduit12" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="product__card-stock" translateX="166.0" translateY="-62.0" wrappingWidth="73.57421875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox prefHeight="75.0" prefWidth="37.0">
+         <children>
+            <ImageView fx:id="edit" fitHeight="33.0" fitWidth="29.0"  pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/204-2047577_view-refresh-gion-simple-update-button-logo-png-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="supp" fitHeight="36.0" fitWidth="31.0" onMouseClicked="#supp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/images-removebg-preview%20(2).png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </children>
+</HBox>

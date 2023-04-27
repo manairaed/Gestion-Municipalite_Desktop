@@ -121,6 +121,63 @@ public class DocumentCRUD {
         ps.close();
         return o;
     }
+      
+    public byte[] getImageById(int id) throws SQLException {
+        byte[] imageBytes = null;
+        String query = "SELECT image FROM document WHERE id = ?";
+        try ( PreparedStatement statement = cnx2.prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                imageBytes = resultSet.getBytes("image");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return imageBytes;
+    }
+    
+    public int getDownloadedCount(int id) {
+    int count = 0;
+    try {
+        String query = "SELECT download_count FROM document WHERE id = ?";
+        PreparedStatement ps = cnx2.prepareStatement(query);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("download_count");
+        }
+        ps.close();
+        
+        // Increment the download_count column by 1
+        String updateQuery = "UPDATE document SET download_count = ? WHERE id = ?";
+        PreparedStatement updatePs = cnx2.prepareStatement(updateQuery);
+        updatePs.setInt(1, count + 1);
+        updatePs.setInt(2, id);
+        updatePs.executeUpdate();
+        updatePs.close();
+        
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+public int getDownloadCountById(int id) {
+    int count = 0;
+    try {
+        String req = "SELECT download_count FROM document WHERE id=?";
+        PreparedStatement pst = cnx2.prepareStatement(req);
+        pst.setInt(1, id);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("download_count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+
 
      
    

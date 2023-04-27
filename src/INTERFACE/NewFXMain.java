@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
  */
-package gui;
+package INTERFACE;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -19,16 +19,18 @@ import javafx.stage.Stage;
  *
  * @author Farhat
  */
-public class adminrendez extends Application {
+public class NewFXMain extends Application {
     
-    @Override
+    
+     @Override
     public void start(Stage primaryStage) {
+       
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("afficherrendez.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("dash.fxml"));
             
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle(" Rendez-Vous!");
+            primaryStage.setTitle("ADD Rendez-Vous!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

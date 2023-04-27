@@ -2,11 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
  */
-package gui;
+package pidev;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,17 +19,16 @@ import javafx.stage.Stage;
  *
  * @author Farhat
  */
-public class rendezvouswindow extends Application {
+public class adminrendez extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-       
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ADD.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("afficherrendez.fxml"));
             
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("ADD Rendez-Vous!");
+            primaryStage.setTitle(" Rendez-Vous!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

@@ -13,6 +13,7 @@ public class Document {
     private String name;
     private String image;
     public static int actionTest;
+     private int downloadCount;
 
     private static int Iddoc;
 
@@ -46,6 +47,16 @@ public class Document {
         this.name = name;
         this.image = image;
     }
+
+    public int getDownloadCount() {
+        return downloadCount;
+    }
+
+    public void setDownloadCount(int downloadCount) {
+        this.downloadCount = downloadCount;
+    }
+    
+    
 
     public int getId() {
         return id;

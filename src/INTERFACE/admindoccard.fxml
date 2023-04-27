@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="450.0" styleClass="product-card" stylesheets="@dashoard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="INTERFACE.AdmindoccardController">
+   <children>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="210.0" styleClass="product__list-imgContainer">
+         <children>
+            <ImageView fx:id="img" fitHeight="130.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="599.0" translateY="2.0">
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin>
+         <children>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="599.0">
+               <children>
+                  <Text fx:id="CName" fill="#171717" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="product__card-title" text="Name">
+                     <font>
+                        <Font name="Montserrat ExtraBold" size="19.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="599.0" stylesheets="@../assets/style/offreStyle.css">
+               <children>
+                  <Text fx:id="stockProduit" fill="#43882b" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="product__card-stock" translateY="-5.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="6.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="0.0" translateY="-5.0" />
+                  <HBox fx:id="priceHbox" prefHeight="39.0" prefWidth="72.0" stylesheets="@../assets/style/offreStyle.css">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <children>
+                        <Text fx:id="count" strokeType="OUTSIDE" strokeWidth="0.0" text="12" wrappingWidth="27.9375" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="599.0">
+               <children>
+                  <Label />
+                  <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="249.0">
+                     <children>
+                        <ImageView fx:id="edit" fitHeight="35.0" fitWidth="37.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/204-2047577_view-refresh-gion-simple-update-button-logo-png-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="supp" fitHeight="35.0" fitWidth="37.0" onMouseClicked="#supp" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/images-removebg-preview%20(2).png" />
+                           </image>
+                        </ImageView>
+                     </children></HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="306.0" stylesheets="@../assets/style/offreStyle.css" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

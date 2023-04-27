@@ -6,6 +6,7 @@ package services;
 
 
 import entities.RendezVous;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,12 +27,39 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tools.MyConnection;
 
+import entities.RendezVous;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import java.io.File;
+import javax.swing.JOptionPane;
+
+
+//import us.zoom.sdk.ZoomError;
+//import us.zoom.sdk.ZoomMeetingOptions;
+//import us.zoom.sdk.ZoomMeetingService;
+//import us.zoom.sdk.ZoomSDK;
+//import us.zoom.sdk.ZoomSDKInitializeParams;
+//import us.zoom.sdk.ZoomSDKInitializeResult;
+
+
+
+
 /**
  *
  * @author Farhat
  */
 public class RendezVousCRUD {
     Connection cnx2;
+    private static final String apiKey = "BFSfbVeUQSms7caXzOANpg";
+    private static final String apiSecret = "4cIRnX29CaSmZkA2vffV4xdzKD6uaKbF93gy";
 
     public RendezVousCRUD() {
         cnx2 = MyConnection.getInstance().getCnx();
@@ -158,11 +186,113 @@ public class RendezVousCRUD {
     return lastMeetingDateTime;
 }
 
-    public RendezVous getOnedoc(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
-   
+    
+    
+    public class PDFGenerator {
+    
+          public void generateRendezVousPDF(List<RendezVous> rendezVousList, String fileName) throws FileNotFoundException, DocumentException {
+            String downloadFolder = System.getProperty("user.home") + "/Downloads/";
+            
+            // Create the file with the specified name in the download folder
+    File file = new File(downloadFolder + fileName);
+    FileOutputStream fos = new FileOutputStream(file);
+
+              
+              Document document = new Document();
+              PdfWriter.getInstance(document, fos);
+              document.open();  
+        
+        // Add a title to the document
+        Paragraph title = new Paragraph("Liste des rendez-vous");
+        document.add(title);
+        
+        // Add a blank line to the document
+        document.add(new Paragraph("\n"));
+        
+        // Add the rendez-vous data to the document
+        for (RendezVous rendezVous : rendezVousList) {
+            Paragraph rendezVousParagraph = new Paragraph();
+            
+            // Add the rendez-vous ID
+            rendezVousParagraph.add("ID: " + rendezVous.getId() + "\n");
+            
+            // Add the rendez-vous description
+            rendezVousParagraph.add("Description: " + rendezVous.getDescription() + "\n");
+            
+            // Add the rendez-vous date and time
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = rendezVous.getDate_ren().format(formatter);
+            rendezVousParagraph.add("Date et heure: " + formattedDateTime + "\n");
+            
+            // Add a blank line after each rendez-vous
+            rendezVousParagraph.add("\n");
+            
+            document.add(rendezVousParagraph);
+        }
+        
+        document.close();
+        
+            JOptionPane.showMessageDialog(null, "Le fichier a été téléchargé dans le dossier de téléchargement.");
+
+    }
+          
+}
+    
+    
+    // Create a new meeting
+//public void createMeeting(String meetingName, String meetingDate, String meetingTime) {
+//        // Generate a JWT token using your API key and secret
+//        ZoomJWTTokenGenerator tokenGenerator = new ZoomJWTTokenGenerator("<your API key>", "<your API secret>");
+//        String jwtToken = tokenGenerator.generate();
+//
+//        // Initialize the Zoom SDK and log in with your JWT token
+//        ZoomSDK zoomSDK = ZoomSDK.getInstance();
+//        ZoomSDKInitializeParams params = new ZoomSDKInitializeParams();
+//        params.appKey = "<your app key>";
+//        params.appSecret = "<your app secret>";
+//        ZoomSDKInitializeResult result = zoomSDK.initialize(params);
+//        if (result.isSuccess()) {
+//            zoomSDK.loginWithJwtToken(jwtToken);
+//
+//            // Set up meeting options
+//            ZoomMeetingOptions options = new ZoomMeetingOptions();
+//            options.no_invite = true;
+//            options.no_share = true;
+//            options.meeting_views_options = ZoomMeetingViewsOptions.NO_BUTTON_PARTICIPANTS_LIST;
+//            options.custom_meeting_id = meetingName;
+//            options.start_time = meetingDate + "T" + meetingTime + ":00Z"; // Format: YYYY-MM-DDTHH:MM:SSZ
+//
+//            // Create the Zoom meeting
+//            ZoomMeetingService meetingService = zoomSDK.getMeetingService();
+//            ZoomError zoomError = meetingService.createMeetingWithOptions("<your user ID>", options);
+//            if (zoomError == ZoomError.ZOOM_ERROR_SUCCESS) {
+//                System.out.println("Meeting created successfully.");
+//            } else {
+//                System.out.println("Error creating meeting: " + zoomError.toString());
+//            }
+//        } else {
+//            System.out.println("Failed to initialize Zoom SDK: " + result.getErrorCode());
+//        }
+//    }
+    
+
+
+    public  String generateAccessToken() {
+        // Set the expiration time for the token to 1 hour from now
+        Date expirationTime = new Date(System.currentTimeMillis() + 3600000);
+        
+        // Create the JWT token using the apiKey, apiSecret, and expiration time
+        String token = Jwts.builder()
+                .setIssuer(apiKey)
+                .setExpiration(expirationTime)
+                .signWith(SignatureAlgorithm.HS256, apiSecret)
+                .compact();
+        
+        return token;
+    }
+
+
 
         
         
