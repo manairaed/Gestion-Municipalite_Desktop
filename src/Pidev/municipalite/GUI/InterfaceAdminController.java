@@ -22,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -91,6 +92,20 @@ public class InterfaceAdminController implements Initializable {
     } catch (Exception ex) {
         System.out.println("Error logging out: " + ex.getMessage());
     }
+    }
+
+    @FXML
+    private void GoToProfil(MouseEvent event) {
+        try{
+                            Stage stage = (Stage) btn_logout.getScene().getWindow();
+                            Parent root =FXMLLoader.load(getClass().getResource("InterfaceProfil.fxml"));
+            Scene scene = new Scene(root );
+            stage.setScene(scene);
+            stage.setResizable(false);
+                    stage.show();
+        }catch(IOException ex){
+                            System.out.println(ex.getMessage());
+        }
     }
     
 }

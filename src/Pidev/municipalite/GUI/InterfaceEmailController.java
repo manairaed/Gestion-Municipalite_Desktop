@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -36,18 +37,36 @@ public class InterfaceEmailController implements Initializable {
     private TextField emailTextField;
     @FXML
     private Button btn_verif;
-
-    Random rand = new Random();
-    int codeVerification = rand.nextInt((1000) + (9999));
-    String codeVerif = String.valueOf(codeVerification);
-    
+    @FXML
+    private TextField codetextField;
+    @FXML
+    private Button btn_valider;
+    @FXML
+    private Label labelEmail;
+    @FXML
+    private Label labelCode;
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        visibility(true, false);
     }    
+    
+    public void visibility(boolean phase1, boolean phase2) {
+        labelEmail.setVisible(phase1);
+        emailTextField.setVisible(phase1);
+        btn_verif.setVisible(phase1); // fin phase 1
+        labelCode.setVisible(phase2);
+        codetextField.setVisible(phase2);
+        btn_valider.setVisible(phase2); // fin phase 2
+    }
+    
+       Random rand = new Random();
+       int codeVerification = rand.nextInt((1000) + (9999));
+       String codeVerif = String.valueOf(codeVerification);
 
     @FXML
     private void Verifier(ActionEvent event) throws SQLException, AddressException, MessagingException{
+        
         String mail = emailTextField.getText();
        ServiceUser us = new ServiceUser();
        /*if (emailTextField.getText().isEmpty()|| !emailTextField.getText().contains("@")|| !emailTextField.getText().contains(".")){
@@ -62,6 +81,9 @@ public class InterfaceEmailController implements Initializable {
             alert.setHeaderText("Veuillez saisir une adresse mail valide");
         }*/
        /*else  {*/
+           
+           
+           
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.outlook.com");
             props.put("mail.smtp.port", "587");
@@ -78,19 +100,6 @@ public class InterfaceEmailController implements Initializable {
                 }
             });
             
-            
-            String body = " Cher Monsieur ,\n"
-                    + "\n"
-                    + "We received a request to reset the password for your TBADEL account. To complete the password reset process, please use the following verification code:\n"
-                    + "\n"
-                    + "Verification code: " + codeVerification + "\n"
-                    + "\n"
-                    + "Please enter this code on the password reset page to verify your identity and create a new password. Please note that this code is valid for [time period, e.g. 24 hours] only. If you did not request a password reset, please ignore this email and take steps to secure your account.\n"
-                    + "\n"
-                    + "If you have any questions or concerns, please don't hesitate to contact us at [contact information].\n"
-                    + "\n"
-                    + "Best regards,  ";
-
              try {
                     // Création du message
                     Message message = new MimeMessage(session);
@@ -106,8 +115,10 @@ public class InterfaceEmailController implements Initializable {
                     // Envoi du message
                     Transport.send(message);
                     System.out.println("message envoyer avec succes");
+                    System.out.println(codeVerif);
+                    visibility(false, true);
                     
-                    try{
+                    /*try{
                             Stage stage = (Stage) btn_verif.getScene().getWindow();
                             Parent root =FXMLLoader.load(getClass().getResource("InterfaceVerifCode.fxml"));
                             Scene scene = new Scene(root );
@@ -116,7 +127,7 @@ public class InterfaceEmailController implements Initializable {
                             stage.show();
                     }catch(IOException ex){
                             System.out.println(ex.getMessage());
-                    }
+                    }*/
               
             } catch (MessagingException e) {
                     // Gestion des exceptions
@@ -127,6 +138,29 @@ public class InterfaceEmailController implements Initializable {
           /*}*/
     }
     
+    @FXML
+    private void VerifCode(ActionEvent event) {
+       String codeV = codetextField.getText();
+        if (!codeV.equals(this.codeVerif)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Code invalide !");
+            alert.showAndWait();
+        } else {
+           try{
+                            Stage stage = (Stage) btn_valider.getScene().getWindow();
+                            Parent root =FXMLLoader.load(getClass().getResource("login.fxml"));
+                            Scene scene = new Scene(root );
+                            stage.setScene(scene);
+                            stage.setResizable(false);
+                            stage.show();
+                    }catch(IOException ex){
+                            System.out.println(ex.getMessage());
+                    }
+        }
+
+    }
+   
     @FXML
     private void goToLogin(MouseEvent event) {
           try{
@@ -140,5 +174,7 @@ public class InterfaceEmailController implements Initializable {
                             System.out.println(ex.getMessage());
         }
     }
+
+    
     
 }

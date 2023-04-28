@@ -32,9 +32,14 @@
          </children>
       </AnchorPane>
       <Button fx:id="btn_logout" layoutX="681.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="105.0" text="Se déconnecter" />
-      <ImageView fitHeight="104.0" fitWidth="138.0" layoutX="6.0" layoutY="38.0" opacity="0.93" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="109.0" fitWidth="138.0" layoutX="8.0" layoutY="33.0" opacity="0.93" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/header.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="84.0" layoutX="171.0" layoutY="18.0" onMouseClicked="#GoToProfil" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/profil.png" />
          </image>
       </ImageView>
    </children>

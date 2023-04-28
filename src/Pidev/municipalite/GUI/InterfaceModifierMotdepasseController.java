@@ -6,23 +6,24 @@ package Pidev.municipalite.GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 
 /**
  * FXML Controller class
  *
  * @author raedm
  */
-public class InterfaceVerifCodeController implements Initializable {
+public class InterfaceModifierMotdepasseController implements Initializable {
 
     @FXML
-    private TextField codeTextField;
+    private PasswordField motdepasseTextfield;
     @FXML
-    private Button btn_VerifCode;
+    private PasswordField VerifMdpTextfield;
+    @FXML
+    private Button btn_modifermdp;
 
     /**
      * Initializes the controller class.
@@ -31,10 +32,5 @@ public class InterfaceVerifCodeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void VerifCode(ActionEvent event) {
-        
-    }
     
 }
