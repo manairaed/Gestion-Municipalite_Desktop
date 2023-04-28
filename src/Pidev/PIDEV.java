@@ -24,6 +24,7 @@ ServiceUser us = new ServiceUser();
 //us.ajouter(u);
 //us.supprimer(23);
 //System.out.println(us.getOneById(3));
+//us.modifier(u);
  
     }
     

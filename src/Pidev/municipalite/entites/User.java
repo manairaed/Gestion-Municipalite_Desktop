@@ -31,6 +31,16 @@ public class User {
         this.tel = tel;
         this.adresse = adresse;
     }
+
+    public User(String email, String nomUtil, String prenomUtil, int tel, String adresse) {
+        this.email = email;
+        this.nomUtil = nomUtil;
+        this.prenomUtil = prenomUtil;
+        this.tel = tel;
+        this.adresse = adresse;
+    }
+    
+    
     
     
     

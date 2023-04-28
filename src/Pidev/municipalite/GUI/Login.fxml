@@ -29,9 +29,14 @@
             <Image url="@../img/header.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="btn_signup" layoutX="326.0" layoutY="354.0" onMouseClicked="#goToInscription" prefHeight="36.0" prefWidth="160.0" text="Inscrivez vous!" textFill="WHITE">
+      <Label fx:id="btn_signup1" layoutX="326.0" layoutY="346.0" onMouseClicked="#goToInscription" prefHeight="36.0" prefWidth="160.0" text="Inscrivez vous!" textFill="WHITE">
          <font>
             <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="btn_pw" layoutX="326.0" layoutY="382.0" onMouseClicked="#goToEmailVerifie" prefHeight="36.0" prefWidth="168.0" text="Mot de passe Oubliée?" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
          </font>
       </Label>
    </children>

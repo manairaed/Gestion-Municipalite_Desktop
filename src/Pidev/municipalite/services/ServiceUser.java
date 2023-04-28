@@ -199,4 +199,24 @@ Connection cnx = MyConnection.getInstance().getCnx();
        return u;
     }
     
+    public boolean verifierEmailBd(String email) { 
+  
+         
+                try {
+                    String req ="SELECT * FROM user  where email = ?";
+                    PreparedStatement pr = cnx.prepareStatement(req);
+                    pr.setString(1, email);
+                    ResultSet rs = pr.executeQuery();
+                    if(!rs.next()){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                       alert.setTitle("Verifier adresse");
+                       alert.setHeaderText("Veuillez saisir une adresse mail valide");
+                       alert.showAndWait();
+                   }
+                }catch (SQLException ex ){
+                    System.out.println(ex.getMessage());
+                }
+                return false;
+    }
+    
 }

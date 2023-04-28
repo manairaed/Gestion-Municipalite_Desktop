@@ -31,7 +31,9 @@ public class LoginController implements Initializable {
 
    ServiceUser us = new ServiceUser();
     @FXML
-    private Label btn_signup;
+    private Label btn_signup1;
+    @FXML
+    private Label btn_pw;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,5 +78,21 @@ public class LoginController implements Initializable {
                             System.out.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void goToEmailVerifie(MouseEvent event) {
+         try{
+                            Stage stage = (Stage) btn_login.getScene().getWindow();
+                            Parent root =FXMLLoader.load(getClass().getResource("InterfaceEmail.fxml"));
+                            Scene scene = new Scene(root );
+                            stage.setScene(scene);
+                            stage.setResizable(false);
+                            stage.show();
+        }catch(IOException ex){
+                            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
     
 }

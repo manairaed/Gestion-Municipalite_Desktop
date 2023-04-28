@@ -4,6 +4,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="452.0" prefWidth="800" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pidev.municipalite.GUI.InterfaceAdminController">
@@ -30,5 +32,10 @@
          </children>
       </AnchorPane>
       <Button fx:id="btn_logout" layoutX="681.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="105.0" text="Se déconnecter" />
+      <ImageView fitHeight="104.0" fitWidth="138.0" layoutX="6.0" layoutY="38.0" opacity="0.93" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/header.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
