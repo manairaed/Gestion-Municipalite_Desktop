@@ -3,21 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package services;
 
-/**
- *
- * @author Ala
- */
+import entities.Categorie;
 import java.util.List;
 /**
  *
  * @author Ala
  */
-public interface ISC<T> {
-    public List<T> affichercat();
-    public void ajoutercat(T a);
-    public void modifercat(T a);
+public interface ISC {
+    public List<Categorie> affichercat();
+    public void ajoutercat(Categorie a);
+    public void modifercat(Categorie a);
     public void supprimercat(int id);
     
 }

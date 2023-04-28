@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pidev.municipalite.entites;
+package entities;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -12,6 +16,7 @@ package Pidev.municipalite.entites;
 public class Categorie {
     private int id;
     private String labelcat;
+    
 
     public Categorie() {
     }
@@ -23,6 +28,7 @@ public class Categorie {
 
     public Categorie(String labelcat) {
         this.labelcat = labelcat;
+      
     }
 
     public int getId() {
@@ -43,11 +49,10 @@ public class Categorie {
 
     @Override
     public String toString() {
-        return "Categorie{" + "id=" + id + ", labelcat=" + labelcat + '}';
+        return labelcat;
     }
     
     
     
     
 }
-

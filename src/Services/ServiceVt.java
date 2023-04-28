@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package services;
 
-/**
- *
- * @author Ala
- */
-import Pidev.municipalite.entites.Vehicule;
+import entities.Vehicule;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import Pidev.municipalite.utils.Myconnection;
+import utils.MyDB;
+import entities.Categorie;
+
 
 /**
  *
@@ -26,7 +25,7 @@ public class ServiceVt implements ISV<Vehicule> {
 private Connection cnx ;
  
 public ServiceVt() {
-    cnx = Myconnection.getInstance().getCnx();
+    cnx = MyDB.getInstance().getcnx();
 }
 
     @Override
@@ -42,11 +41,9 @@ public ServiceVt() {
         while(rs.next()){
             Vehicule a = new Vehicule();
             a.setId(rs.getInt(1));
-            a.setCategorie_id(rs.getInt(2));
-         a.setUsers_id(rs.getInt(3));
+            a.setLabelcat(rs.getString(2));
                      a.setMarque(rs.getString(4));
-                                 a.setDisponible(rs.getBoolean(5));
-
+                                 a.setDisponible(rs.getInt(5));
 
 
            
@@ -66,7 +63,17 @@ public ServiceVt() {
     @Override
     public void ajoutervt(Vehicule a) {
 try {
-             String querry="INSERT INTO `vehicule`(`categorie_id`, `users_id`, `marque`, `disponible` ) VALUES ('"+a.getCategorie_id()+"','"+a.getUsers_id()+"','"+a.getMarque()+"','"+a.getDisponible()+"')";
+    int id = 0 ;
+  
+                String requete = "SELECT id FROM categorie  WHERE labelcat=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setString(1, a.getLabelcat());
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+             String querry="INSERT INTO `vehicule`(`categorie_id`, `marque`, `disponible` ) "
+                     + "VALUES ('"+id+"','"+a.getMarque()+"','"+a.getDisponible()+"')";
             Statement stm =cnx.createStatement();
        
         stm.executeUpdate(querry);
@@ -85,15 +92,18 @@ try {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    
-    
     }   
-
-    @Override
-    public void modifercat(Vehicule a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      public void updateVehicule(Vehicule a) {
+        try {
+            String querry = "UPDATE `vehicule` SET `marque`='" + a.getMarque()+ "', `disponible`='" + a.getDisponible()+ "' WHERE id=" + a.getId();
+            Statement stm =cnx.createStatement();
+            stm.executeUpdate(querry);
+            System.out.println("La categorie est modifée !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     
+    
 }
-

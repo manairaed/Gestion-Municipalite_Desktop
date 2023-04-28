@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="388.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.VehiculeController">
+   <children>
+      <Label layoutX="67.0" layoutY="218.0" text="Catégorie" textFill="#090909" textOverrun="CLIP">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="mq" layoutX="215.0" layoutY="162.0" prefHeight="25.0" prefWidth="175.0" />
+      <Label layoutX="72.0" layoutY="164.0" text="Marque" textFill="#1b1b1b">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="275.0" text="Disponiblité" textFill="#121212">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="su" layoutX="457.0" layoutY="316.0" mnemonicParsing="false" onAction="#supp" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #c3352b;" text="Supprimer" textFill="#f8f5f5" />
+      <Button fx:id="aj" layoutX="248.0" layoutY="316.0" mnemonicParsing="false" onAction="#ajt" prefHeight="17.0" prefWidth="62.0" style="-fx-background-color: #5091cb;" text="Ajouter" textFill="#f6f3f3" />
+      <Button fx:id="mod" layoutX="542.0" layoutY="316.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #c6ecf9;" text="Modifier" textFill="#aea5a5" />
+      <TableView fx:id="affiche" layoutX="491.0" layoutY="99.0" prefHeight="196.0" prefWidth="352.0" style="-fx-background-color: #c6ecf9;">
+        <columns>
+          <TableColumn fx:id="idc" prefWidth="85.33331298828125" text="Categorie" />
+            <TableColumn fx:id="marq" prefWidth="102.66668701171875" text="Marque" />
+            <TableColumn fx:id="disp" prefWidth="88.66668701171875" text="Disponible" />
+        </columns>
+      </TableView>
+      <Button layoutX="612.0" layoutY="316.0" mnemonicParsing="false" onAction="#display" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #009398;" text="Refresh" textFill="#ffffff" />
+      <ComboBox fx:id="combo1" layoutX="215.0" layoutY="215.0" prefHeight="25.0" prefWidth="175.0" promptText="choisissez categorie" />
+      <ComboBox fx:id="combo2" layoutX="215.0" layoutY="273.0" prefHeight="25.0" prefWidth="175.0" promptText="choisissez la disponibilité" />
+      <Separator layoutX="406.0" layoutY="1.0" orientation="VERTICAL" prefHeight="387.0" prefWidth="33.0" />
+      <Text layoutX="186.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Véhicule:" />
+      <Text layoutX="555.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des véhicules :" />
+      <Separator layoutY="35.0" prefHeight="8.0" prefWidth="850.0" />
+      <Label layoutX="457.0" layoutY="54.0" text="Rechercher :" />
+      <TextField fx:id="filterFiled" layoutX="542.0" layoutY="50.0" onKeyTyped="#chercher" promptText="Nom Marque" />
+      <Button layoutX="47.0" layoutY="52.0" mnemonicParsing="false" onAction="#rtr" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #512f84;" text="Categorie" textFill="#f8f2f2" />
+      <Button layoutX="689.0" layoutY="316.0" mnemonicParsing="false" onAction="#select" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #009398;" text="select" textFill="#ffffff" />
+      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="170.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/echanger.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="170.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/options.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="171.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/disponible.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="14.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/accueil.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="706.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/recherche.png" />
+         </image>
+      </ImageView>
+      <Text fill="#61a7d9" layoutX="108.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion véhicule" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="48.0" fitWidth="74.0" layoutX="33.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dechets.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="761.0" layoutY="316.0" mnemonicParsing="false" onAction="#pdf" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #009398;" text="pdf" textFill="#f6f4f4" />
+      <Button fx:id="btntrier" layoutX="747.0" layoutY="50.0" mnemonicParsing="false" onAction="#affichrtTri" style="-fx-background-color: #5091cb;" text="trier" textFill="#fdfdfd" />
+      <Button layoutX="611.0" layoutY="355.0" mnemonicParsing="false" onAction="#qr" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #5091cb;" text="QR Code" textFill="#ffffff" />
+   </children>
+</AnchorPane>
