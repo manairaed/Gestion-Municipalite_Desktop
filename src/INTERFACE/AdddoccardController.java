@@ -124,7 +124,7 @@ public class AdddoccardController implements Initializable {
     private void ajouter_image(MouseEvent event) throws IOException {
          FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.pdf"));
         selectedImageFile = fileChooser.showOpenDialog(imageInput.getScene().getWindow());
         if (selectedImageFile != null) {
             Image image = new Image(selectedImageFile.toURI().toString());

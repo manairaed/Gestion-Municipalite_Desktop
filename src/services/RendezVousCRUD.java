@@ -5,6 +5,7 @@
 package services;
 
 
+import com.itextpdf.text.BaseColor;
 import entities.RendezVous;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
@@ -34,11 +35,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.File;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
 
 
@@ -186,95 +196,73 @@ public class RendezVousCRUD {
     return lastMeetingDateTime;
 }
 
-    
-    
-    
     public class PDFGenerator {
-    
-          public void generateRendezVousPDF(List<RendezVous> rendezVousList, String fileName) throws FileNotFoundException, DocumentException {
-            String downloadFolder = System.getProperty("user.home") + "/Downloads/";
-            
-            // Create the file with the specified name in the download folder
-    File file = new File(downloadFolder + fileName);
-    FileOutputStream fos = new FileOutputStream(file);
 
-              
-              Document document = new Document();
-              PdfWriter.getInstance(document, fos);
-              document.open();  
-        
-        // Add a title to the document
-        Paragraph title = new Paragraph("Liste des rendez-vous");
-        document.add(title);
-        
-        // Add a blank line to the document
-        document.add(new Paragraph("\n"));
-        
-        // Add the rendez-vous data to the document
-        for (RendezVous rendezVous : rendezVousList) {
-            Paragraph rendezVousParagraph = new Paragraph();
-            
-            // Add the rendez-vous ID
-            rendezVousParagraph.add("ID: " + rendezVous.getId() + "\n");
-            
-            // Add the rendez-vous description
-            rendezVousParagraph.add("Description: " + rendezVous.getDescription() + "\n");
-            
-            // Add the rendez-vous date and time
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String formattedDateTime = rendezVous.getDate_ren().format(formatter);
-            rendezVousParagraph.add("Date et heure: " + formattedDateTime + "\n");
-            
-            // Add a blank line after each rendez-vous
-            rendezVousParagraph.add("\n");
-            
-            document.add(rendezVousParagraph);
-        }
-        
-        document.close();
-        
+        public void generateRendezVousPDF(List<RendezVous> rendezVousList, String fileName) throws FileNotFoundException, DocumentException {
+            String downloadFolder = System.getProperty("user.home") + "/Downloads/";
+
+            // Create the file with the specified name in the download folder
+            File file = new File(downloadFolder + fileName);
+            FileOutputStream fos = new FileOutputStream(file);
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, fos);
+            document.open();
+
+            // Add a title to the document
+            Paragraph title = new Paragraph("Liste des rendez-vous", new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, new BaseColor(0, 0, 255)));
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            // Add a blank line to the document
+            document.add(new Paragraph("\n"));
+
+            // Create a table to display the rendez-vous data
+            PdfPTable table = new PdfPTable(2);
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10);
+            table.setSpacingAfter(10);
+
+            // Add table headers
+            PdfPCell descriptionHeader = new PdfPCell(new Phrase("Description", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+            descriptionHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+            descriptionHeader.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            descriptionHeader.setBackgroundColor(new BaseColor(0, 191, 255));
+            table.addCell(descriptionHeader);
+
+            PdfPCell dateTimeHeader = new PdfPCell(new Phrase("Date et heure", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+            dateTimeHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+            dateTimeHeader.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            dateTimeHeader.setBackgroundColor(new BaseColor(0, 191, 255));
+            table.addCell(dateTimeHeader);
+
+            // Add the rendez-vous data to the table
+            for (RendezVous rendezVous : rendezVousList) {
+
+                PdfPCell descriptionCell = new PdfPCell(new Phrase(rendezVous.getDescription()));
+                descriptionCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                descriptionCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+                table.addCell(descriptionCell);
+
+                PdfPCell dateTimeCell = new PdfPCell(new Phrase(rendezVous.getDate_ren().toString()));
+                dateTimeCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                dateTimeCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(dateTimeCell);
+            }
+
+            // Add the table to the document
+            document.add(table);
+
+            document.close();
+
             JOptionPane.showMessageDialog(null, "Le fichier a été téléchargé dans le dossier de téléchargement.");
+        }
 
     }
-          
-}
+      
+
     
     
-    // Create a new meeting
-//public void createMeeting(String meetingName, String meetingDate, String meetingTime) {
-//        // Generate a JWT token using your API key and secret
-//        ZoomJWTTokenGenerator tokenGenerator = new ZoomJWTTokenGenerator("<your API key>", "<your API secret>");
-//        String jwtToken = tokenGenerator.generate();
-//
-//        // Initialize the Zoom SDK and log in with your JWT token
-//        ZoomSDK zoomSDK = ZoomSDK.getInstance();
-//        ZoomSDKInitializeParams params = new ZoomSDKInitializeParams();
-//        params.appKey = "<your app key>";
-//        params.appSecret = "<your app secret>";
-//        ZoomSDKInitializeResult result = zoomSDK.initialize(params);
-//        if (result.isSuccess()) {
-//            zoomSDK.loginWithJwtToken(jwtToken);
-//
-//            // Set up meeting options
-//            ZoomMeetingOptions options = new ZoomMeetingOptions();
-//            options.no_invite = true;
-//            options.no_share = true;
-//            options.meeting_views_options = ZoomMeetingViewsOptions.NO_BUTTON_PARTICIPANTS_LIST;
-//            options.custom_meeting_id = meetingName;
-//            options.start_time = meetingDate + "T" + meetingTime + ":00Z"; // Format: YYYY-MM-DDTHH:MM:SSZ
-//
-//            // Create the Zoom meeting
-//            ZoomMeetingService meetingService = zoomSDK.getMeetingService();
-//            ZoomError zoomError = meetingService.createMeetingWithOptions("<your user ID>", options);
-//            if (zoomError == ZoomError.ZOOM_ERROR_SUCCESS) {
-//                System.out.println("Meeting created successfully.");
-//            } else {
-//                System.out.println("Error creating meeting: " + zoomError.toString());
-//            }
-//        } else {
-//            System.out.println("Failed to initialize Zoom SDK: " + result.getErrorCode());
-//        }
-//    }
     
 
 
@@ -291,12 +279,38 @@ public class RendezVousCRUD {
         
         return token;
     }
-
-
-
-        
-        
+    
+    
+    
+    
+public boolean canAddMeeting(LocalDate date, LocalTime time) {
+    boolean canAdd = true;
+    LocalDateTime dateTime = LocalDateTime.of(date, time);
+    try {
+        String req = "SELECT date_ren FROM rendez_vous WHERE DATE(date_ren) = ?";
+        PreparedStatement st = cnx2.prepareStatement(req);
+        st.setDate(1, java.sql.Date.valueOf(date));
+        ResultSet rs = st.executeQuery();
+        while (rs.next()) {
+            LocalDateTime dbDateTime = rs.getTimestamp("date_ren").toLocalDateTime();
+            if (dbDateTime.isBefore(dateTime.plusMinutes(30)) && dbDateTime.isAfter(dateTime.minusMinutes(30))) {
+                canAdd = false;
+                break;
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
+    return canAdd;
+}
+
+    
+
+
+
+        
+        
+}
     
     
     

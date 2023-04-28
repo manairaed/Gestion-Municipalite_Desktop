@@ -150,7 +150,7 @@
                   <HBox fx:id="validiteInputErrorHbox" prefHeight="67.0" prefWidth="598.0" styleClass="form_errors-product" stylesheets="@../assets/style/aliStyle.css">
                      <children>
                         <Text fill="#dc284c" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="form_errors-product-point" text=".  " translateY="-15.0" wrappingWidth="23.18400001525879" />
-                        <Text fx:id="validiteInputError" fill="#dc284c" strokeType="OUTSIDE" strokeWidth="0.0" text="La temps est obligatoire">
+                        <Text fx:id="validiteInputError" fill="#dc284c" strokeType="OUTSIDE" strokeWidth="0.0" text="choisissez une autre heure pour votre réunion">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>

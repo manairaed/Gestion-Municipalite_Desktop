@@ -70,6 +70,8 @@ public class AddrendezcardController implements Initializable {
     private int priceTest = 0;
     
     private LocalDateTime lastMeetingDateTime;
+    
+    RendezVousCRUD cs = new RendezVousCRUD();
 
     /**
      * Initializes the controller class.
@@ -165,23 +167,20 @@ LocalDateTime now = LocalDateTime.now();
                 validiteInputErrorHbox.setVisible(true);
                 priceTest = 0;
                 priceInputErrorHbox.setVisible(true);
-            } else {
-                // Check if the selected date and time are at least 30 minutes after the last meeting in the database
-                LocalDateTime minDateTime = dateTime.plusMinutes(30);
-                if (isDateValid(minDateTime)) {
-                    // Set the combined LocalDateTime object to the date_ren column
-                    offre.setDate_ren(dateTime);
-                     priceTest = 1;
-                     validiteTest = 1;
-                } else {
-                    // Handle error when selected date and time is not at least 30 minutes after the last meeting in the database
-                    validiteTest = 0;
-                    validiteInputErrorHbox.setVisible(true);
-                    priceTest = 0;
-                    priceInputErrorHbox.setVisible(true);
-                }
-            }
+            } else if (!cs.canAddMeeting(selectedDate, selectedTime)) {
+            // Handle error when selected date and time is less than 30 minutes after the last meeting in the database
+            validiteTest = 0;
+            validiteInputErrorHbox.setVisible(true);
+            priceTest = 0;
+            priceInputErrorHbox.setVisible(true);
+        } else {
+            // Set the combined LocalDateTime object to the date_ren column
+            offre.setDate_ren(dateTime);
+            validiteTest = 1;
+            priceTest = 1;
         }
+    }
+
         // Check if the selected date and time are at least 30 minutes after the last meeting in the database
 
 
@@ -259,15 +258,15 @@ LocalDateTime now = LocalDateTime.now();
     
     
     
-    public boolean isDateValid(LocalDateTime dateTime) {
-        // Query the database to get the last meeting date and time
-        RendezVousCRUD cs = new RendezVousCRUD();
-        lastMeetingDateTime = cs.queryLastMeetingDateTime();
-
-        // Check if the selected date and time are at least 30 minutes after the last meeting in the database
-        LocalDateTime minDateTime = lastMeetingDateTime.plusMinutes(30);
-        return dateTime.isAfter(minDateTime);
-    }
+//    public boolean isDateValid(LocalDateTime dateTime) {
+//        // Query the database to get the last meeting date and time
+//        RendezVousCRUD cs = new RendezVousCRUD();
+//        lastMeetingDateTime = cs.queryLastMeetingDateTime();
+//
+//        // Check if the selected date and time are at least 30 minutes after the last meeting in the database
+//        LocalDateTime minDateTime = lastMeetingDateTime.plusMinutes(30);
+//        return dateTime.isAfter(minDateTime);
+//    }
 
     @FXML
     private void updateOffre(ActionEvent event) {
@@ -318,24 +317,20 @@ LocalDateTime now = LocalDateTime.now();
                 priceTest = 0;
                 priceInputErrorHbox.setVisible(true);
             } 
-            else {
-                // Check if the selected date and time are at least 30 minutes after the last meeting in the database
-                LocalDateTime minDateTime = dateTime.plusMinutes(30);
-                if (isDateValid(minDateTime)) {
-                    // Set the combined LocalDateTime object to the date_ren column
-                    offre.setDate_ren(dateTime);
-                    priceTest = 1;
-                     validiteTest = 1;
-                } 
-                else {
-                    // Handle error when selected date and time is not at least 30 minutes after the last meeting in the database
-                    validiteTest = 0;
-                    validiteInputErrorHbox.setVisible(true);
-                    priceTest = 0;
-                    priceInputErrorHbox.setVisible(true);
-                }
-            }
+             else if (!cs.canAddMeeting(selectedDate, selectedTime)) {
+            // Handle error when selected date and time is less than 30 minutes after the last meeting in the database
+            validiteTest = 0;
+            validiteInputErrorHbox.setVisible(true);
+            priceTest = 0;
+            priceInputErrorHbox.setVisible(true);
+        } else {
+            // Set the combined LocalDateTime object to the date_ren column
+            offre.setDate_ren(dateTime);
+            validiteTest = 1;
+            priceTest = 1;
         }
+    }
+    
 
         
 

@@ -120,27 +120,29 @@ public class UsermeetingController implements Initializable {
 
     @FXML
     private void zoom(ActionEvent event) {
-        
-      
-        RendezVousCRUD cs = new RendezVousCRUD();
-
-        // Add event listener to the 'Schedule Meeting' button to open the Zoom web page for scheduling a new meeting
-        String apiKey = "BFSfbVeUQSms7caXzOANpg";
-        String apiSecret = "4cIRnX29CaSmZkA2vffV4xdzKD6uaKbF93gy";
-            // Generate a new access token using the ZoomApi class from the RendezvousCrud service
-            String accessToken = cs.generateAccessToken();
-
-            // Construct the URL for scheduling a meeting with the Zoom web app
-            String url = "https://zoom.us/meeting/schedule?apiKey=" + apiKey + "&apiSecret=" + apiSecret + "&token=" + accessToken;
-        
-            try {
-                // Open the Zoom web page in the user's default web browser
-                Desktop.getDesktop().browse(new URI(url));
-            } catch (IOException | URISyntaxException e) {
-                // Handle any errors that occur while trying to open the web page
-                e.printStackTrace();
-            }
-        
+//        
+//      
+//        RendezVousCRUD cs = new RendezVousCRUD();
+//
+//        // Add event listener to the 'Schedule Meeting' button to open the Zoom web page for scheduling a new meeting
+//        String apiKey = "BFSfbVeUQSms7caXzOANpg";
+//        String apiSecret = "4cIRnX29CaSmZkA2vffV4xdzKD6uaKbF93gy";
+//        String accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IkJGU2ZiVmVVUVNtczdjYVh6T0FOcGciLCJleHAiOjE2ODMyOTg5MzksImlhdCI6MTY4MjY5NDEzOX0.MKMpPzUgF06ZIQQfqzEoHhlWO-ubaqlsQXz901zi0tA";
+//            // Generate a new access token using the ZoomApi class from the RendezvousCrud service
+////            String accessToken = cs.generateAccessToken();
+//            String employeeEmail = "benfarhat.achref@esprit.tn";
+//
+//            // Construct the URL for scheduling a meeting with the Zoom web app
+//            String url = "https://zoom.us/meeting/schedule?apiKey=" + apiKey + "&apiSecret=" + apiSecret + "&token=" + accessToken+ "&email=" + employeeEmail;
+//        
+//            try {
+//                // Open the Zoom web page in the user's default web browser
+//                Desktop.getDesktop().browse(new URI(url));
+//            } catch (IOException | URISyntaxException e) {
+//                // Handle any errors that occur while trying to open the web page
+//                e.printStackTrace();
+//            }
+//        
     }
     
     // Other methods for your controller class...

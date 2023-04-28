@@ -28,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import services.DocumentCRUD;
 import static sun.management.GcInfoCompositeData.getId;
@@ -86,32 +87,41 @@ public class UserdocumentController implements Initializable {
     private void telecharger(ActionEvent event) throws SQLException {
         DocumentCRUD cs = new DocumentCRUD();
         cs.getDownloadedCount(document.getId());
-        
-          try {
-              int imageId = document.getId();// replace yourListViewOrTableView with the name of your ListView or TableView, and getId() with the method that returns the ID of the selected image
 
-        Image image = new Image(
-                    getClass().getResource("/assets/OffresUploads/" + document.getImage()).toExternalForm()); // replace yourService with your service or repository instance, and yourImageId with the ID of the image you want to download
-        File file = new File("image.jpg"); // replace image.jpg with the name you want to give to the file
-         
-        
-        // convert the image to a byte array
-        BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(bImage, "png", baos);
-        byte[] bytes = baos.toByteArray();
-        // write the bytes to the file
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-        fileOutputStream.write(bytes);
-        fileOutputStream.close();
+        try {
+            // Get the image from the application's resources
+            Image image = new Image(getClass().getResource("/assets/OffresUploads/" + document.getImage()).toExternalForm());
 
-        // open the file
-        Desktop.getDesktop().open(file);
-    } catch (IOException e) {
-        e.printStackTrace();
+            // Prompt the user to select a location to save the image
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Image");
+            File file = fileChooser.showSaveDialog(null);
+
+            if (file != null) {
+                // Get the file extension of the selected file
+                String extension = getFileExtension(file);
+
+                // Save the image to the selected file
+                BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+                ImageIO.write(bImage, extension, file);
+
+                // Open the file
+                Desktop.getDesktop().open(file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-        
-        
+
+    private String getFileExtension(File file) {
+        String fileName = file.getName();
+        int lastDotIndex = fileName.lastIndexOf('.');
+        if (lastDotIndex > 0) {
+            return fileName.substring(lastDotIndex + 1).toLowerCase();
+        } else {
+            return "png"; // default to PNG format if file extension is missing
+        }
     }
-    
+
+
 }
