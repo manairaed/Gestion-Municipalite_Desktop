@@ -48,7 +48,7 @@ public class LoginController implements Initializable {
         if(loggedInUser != null){
                         try{
                             Stage stage = (Stage) btn_login.getScene().getWindow();
-                            Parent root =FXMLLoader.load(getClass().getResource("InterfaceAdmin.fxml"));
+                            Parent root =FXMLLoader.load(getClass().getResource("SendSmsCode.fxml"));
             Scene scene = new Scene(root );
             stage.setScene(scene);
             stage.setResizable(false);

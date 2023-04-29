@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #19376D;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Pidev.municipalite.GUI.InterfaceProfilController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #19376D;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pidev.municipalite.GUI.InterfaceProfilController">
    <children>
       <ImageView fitHeight="78.0" fitWidth="137.0" layoutX="233.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,7 +25,7 @@
       <TextField fx:id="nomTextfield" layoutX="124.0" layoutY="217.0" prefHeight="37.0" prefWidth="158.0" />
       <TextField fx:id="adresseTextfield" layoutX="417.0" layoutY="217.0" prefHeight="37.0" prefWidth="158.0" />
       <TextField fx:id="telTextfield" layoutX="417.0" layoutY="153.0" prefHeight="37.0" prefWidth="158.0" />
-      <Button fx:id="btn_modifier" layoutX="446.0" layoutY="294.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Modifier" />
+      <Button fx:id="btn_modifier" layoutX="446.0" layoutY="294.0" mnemonicParsing="false" onAction="#ModifierUser" prefHeight="26.0" prefWidth="85.0" text="Modifier" />
       <Label layoutX="50.0" layoutY="156.0" text="Email" textFill="WHITE">
          <font>
             <Font size="21.0" />
@@ -52,7 +51,7 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <ImageView fitHeight="54.0" fitWidth="64.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="54.0" fitWidth="64.0" layoutX="24.0" layoutY="14.0" onMouseClicked="#GoToUser" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/back.png" />
          </image>

@@ -21,7 +21,7 @@
             <Image url="@../img/header.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="44.0" layoutX="25.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#goToLogin" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="43.0" fitWidth="62.0" layoutX="25.0" layoutY="26.0" onMouseClicked="#goToLogin" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/back.png" />
          </image>
