@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="recpane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1720.0" styleClass="dash__side-bar" stylesheets="@dashoard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationController">
+   <children>
+      <Label fx:id="nom" graphicTextGap="6.0" layoutX="74.0" layoutY="269.0" prefHeight="50.0" prefWidth="100.0" text="Nom" textFill="RED">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenom" layoutX="74.0" layoutY="338.0" prefHeight="50.0" prefWidth="110.0" text="Prenom" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id_nom" layoutX="165.0" layoutY="269.0" prefHeight="50.0" prefWidth="252.0" style="-fx-border-color: #000000;" />
+      <Label fx:id="date" layoutX="62.0" layoutY="695.0" prefHeight="50.0" prefWidth="124.0" text="Date" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id_prenom" layoutX="165.0" layoutY="338.0" prefHeight="50.0" prefWidth="252.0" style="-fx-border-color: #000000;" />
+      <TableView fx:id="tableviewreclamation" layoutX="732.0" layoutY="343.0" onMouseClicked="#getSelected" prefHeight="606.0" prefWidth="974.0">
+         <columns>
+            <TableColumn fx:id="n" prefWidth="148.0" resizable="false" style="-fx-background-color: #2262C6;" text="Nom" />
+            <TableColumn fx:id="p" prefWidth="135.2000732421875" style="-fx-background-color: #2262C6;" text="Prenom" />
+            <TableColumn fx:id="e" prefWidth="147.20001220703125" style="-fx-background-color: #2262C6;" text="Email" />
+            <TableColumn fx:id="t" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #f40e0e;" text="Tel" />
+            <TableColumn fx:id="d" prefWidth="289.599853515625" style="-fx-background-color: #2262C6;" text="Description" />
+            <TableColumn fx:id="da" prefWidth="136.0" style="-fx-background-color: #2262C6;" text="Date" />
+            <TableColumn fx:id="et" prefWidth="115.199951171875" style="-fx-background-color: #2262C6;" text="Etat" />
+         </columns>
+      </TableView>
+      <Label fx:id="tel" layoutX="71.0" layoutY="483.0" prefHeight="50.0" prefWidth="91.0" text="Tel" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="email" layoutX="63.0" layoutY="409.0" prefHeight="50.0" prefWidth="85.0" text=" Email" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="desc" layoutX="62.0" layoutY="590.0" prefHeight="50.0" prefWidth="124.0" text="Description" textFill="RED">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id_email" layoutX="165.0" layoutY="404.0" prefHeight="50.0" prefWidth="252.0" style="-fx-border-color: #000000;" />
+      <TextField fx:id="id_description" layoutX="164.0" layoutY="553.0" prefHeight="122.0" prefWidth="252.0" style="-fx-border-color: #000000;" />
+      <TextField fx:id="id_tel" layoutX="165.0" layoutY="479.0" prefHeight="50.0" prefWidth="252.0" style="-fx-border-color: #000000;" />
+      <DatePicker fx:id="dpdate" layoutX="163.0" layoutY="695.0" prefHeight="50.0" prefWidth="252.0" style="-fx-border-color: #000000;" />
+      <TextField fx:id="filterField" layoutX="757.0" layoutY="265.0" onKeyTyped="#chercher" prefHeight="58.0" prefWidth="358.0" />
+      <Button fx:id="rrrr" layoutX="544.0" layoutY="253.0" mnemonicParsing="false" onAction="#print" prefHeight="74.0" prefWidth="142.0" styleClass="anchore" stylesheets="@dashoard.css" text="print" textFill="WHITE" />
+      <ComboBox fx:id="combotri" layoutX="1197.0" layoutY="264.0" prefHeight="58.0" prefWidth="245.0" promptText="Tri" />
+      <Button fx:id="statBtn" layoutX="545.0" layoutY="343.0" mnemonicParsing="false" onAction="#afficherStatistique" prefHeight="74.0" prefWidth="142.0" styleClass="anchore" stylesheets="@dashoard.css" text="NBReclamation" textFill="WHITE" />
+      <Button fx:id="BtnChat" layoutX="545.0" layoutY="615.0" mnemonicParsing="false" onAction="#msg" prefHeight="74.0" prefWidth="142.0" styleClass="anchore" stylesheets="@dashoard.css" text="Chat" textFill="WHITE" />
+      <Button layoutX="546.0" layoutY="524.0" mnemonicParsing="false" onAction="#pdf" prefHeight="74.0" prefWidth="142.0" styleClass="anchore" stylesheets="@dashoard.css" text="PDF   " textFill="WHITE" />
+      <Button layoutX="546.0" layoutY="708.0" mnemonicParsing="false" onAction="#mail" prefHeight="74.0" prefWidth="142.0" styleClass="anchore" stylesheets="@dashoard.css" text="envoyer" textFill="WHITE" />
+      <Button layoutX="546.0" layoutY="434.0" mnemonicParsing="false" onAction="#Statistic" prefHeight="74.0" prefWidth="142.0" styleClass="anchore" stylesheets="@dashoard.css" text="Etat Reclamation" textFill="WHITE" />
+      <ImageView fitHeight="50.0" fitWidth="47.0" layoutX="11.0" layoutY="483.0">
+         <image>
+            <Image url="@../image/téléchargement.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btntri" layoutX="1477.0" layoutY="265.0" mnemonicParsing="false" onAction="#trilist" prefHeight="58.0" prefWidth="211.0" text="Submit" />
+      <ImageView fitHeight="50.0" fitWidth="47.0" layoutX="11.0" layoutY="269.0">
+         <image>
+            <Image url="@../image/téléchargement%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="47.0" layoutX="11.0" layoutY="339.0">
+         <image>
+            <Image url="@../image/téléchargement%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="47.0" layoutX="12.0" layoutY="590.0">
+         <image>
+            <Image url="@../image/226582.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="47.0" layoutX="12.0" layoutY="695.0">
+         <image>
+            <Image url="@../image/4781427.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="99.0" layoutY="776.0" mnemonicParsing="false" onAction="#modifierReclamation" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #ff0000;" text="Traité" />
+      <Button layoutX="291.0" layoutY="776.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #ff0000;" text="Delete" />
+      <BorderPane layoutX="768.0" layoutY="-742.0" prefHeight="1680.0" prefWidth="167.0" rotate="90.0" styleClass="side_anchorpane" stylesheets="@dashoard.css" />
+      <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="8.0" layoutY="409.0">
+         <image>
+            <Image url="@../image/téléchargement%20(2).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="455.0" layoutY="253.0">
+         <image>
+            <Image url="@../image/téléchargement%20(3).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="455.0" layoutY="343.0">
+         <image>
+            <Image url="@../image/images%20(2).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="455.0" layoutY="434.0">
+         <image>
+            <Image url="@../image/aa.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="455.0" layoutY="524.0">
+         <image>
+            <Image url="@../image/téléchargement%20(4).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="455.0" layoutY="615.0">
+         <image>
+            <Image url="@../image/téléchargement%20(5).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="455.0" layoutY="708.0">
+         <image>
+            <Image url="@../image/unnamed.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="238.0" fitWidth="491.0" layoutY="842.0">
+         <image>
+            <Image url="@../image/header.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

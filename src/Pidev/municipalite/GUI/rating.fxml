@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" fx:id="recpane" prefHeight="681" prefWidth="1476" stylesheets="" xmlns="" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RatingController">
+   <children>
+      <Button layoutX="365.0" layoutY="413.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="44.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Supprimer avis">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="ajouterButton" layoutX="40.0" layoutY="413.0" mnemonicParsing="false" onAction="#ajouterAvis" prefHeight="44.0" prefWidth="184.0" style="-fx-background-color: #ffffff;" text="Ajouter avis">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <TableView fx:id="table" layoutX="319.0" layoutY="88.0" prefHeight="303.0" prefWidth="464.0">
+        <columns>
+          <TableColumn fx:id="titret" prefWidth="83.0" text="Titre" />
+            <TableColumn fx:id="commentairet" prefWidth="189.0" text="Commentaire" />
+            <TableColumn fx:id="ratingg" prefWidth="189.0" text="Rating" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="30.0" layoutY="88.0" opacity="0.93" prefHeight="303.0" prefWidth="267.0" style="-fx-background-color: linear-gradient(to top, #ff3356, #ff3653, #ff3950, #ff3c4e, #ff3f4b);">
+         <children>
+            <JFXTextField fx:id="titre" focusColor="WHITE" labelFloat="true" layoutX="35.0" layoutY="33.0" promptText="Titre" unFocusColor="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="commentaire" focusColor="#ffffff00" labelFloat="true" layoutX="35.0" layoutY="129.0" promptText="Commentaire" unFocusColor="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font></JFXTextField>
+            <Rating fx:id="rating" layoutX="47.0" layoutY="193.0" rating="0.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="51.0" fitWidth="27.0" layoutX="545.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ressources/img/fermer-croix-supprimer-erreurs-sortie-icone-4368-48.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="197.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ressources/img/icons8-add-64.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="a" layoutX="610.0" layoutY="451.0" mnemonicParsing="false" onAction="#b" prefHeight="25.0" prefWidth="72.0" text="back">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnChat2" layoutX="692.0" layoutY="451.0" mnemonicParsing="false" onAction="#Message" prefHeight="25.0" prefWidth="72.0" text="chat">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
