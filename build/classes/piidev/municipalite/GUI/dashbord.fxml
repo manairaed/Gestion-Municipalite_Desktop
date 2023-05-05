@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="659.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="piidev.municipalite.GUI.DashbordController">
+    <stylesheets>
+        <URL value="@dashbord.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="27.0" layoutY="62.0" prefHeight="485.0" prefWidth="524.0">
+         <children>
+            <Text layoutX="209.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MUNICIPALITE">
+               <font>
+                  <Font name="Consolas Bold" size="30.0" />
+               </font>
+            </Text>
+            <Text layoutX="246.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DE TUNIS">
+               <font>
+                  <Font name="Consolas Bold" size="28.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="376.0" fitWidth="359.0" layoutX="183.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/logo_Plan%20de%20travail%201.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
